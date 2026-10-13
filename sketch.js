@@ -39,12 +39,12 @@ function mioGlifo(x, y, size) {
 
   circle(0, 0, size); //orologio
 
-    
+  fill (0);
+  strokeWeight(1);
+  circle(0, 0, size/8);
+
     //lancette
     angleMode(DEGREES); //gradi al posto che radianti
-    
-    fill (0);
-    strokeWeight(1);
 
     //lancetta lunga
     const rotazione1 = random(360);
