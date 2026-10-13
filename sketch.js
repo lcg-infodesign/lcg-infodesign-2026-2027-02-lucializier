@@ -25,7 +25,7 @@ function setup() {
   }
 }
 
-function mioGlifo(x, y, larghezza, altezza) {
+function mioGlifo(x, y) {
   
   push()
 
@@ -36,23 +36,26 @@ function mioGlifo(x, y, larghezza, altezza) {
   let b = random(255); 
   fill(r, g, b);
 
-  ellipse(0, 0, larghezza, altezza); //corpo insetto
+  const larghezzaIns = random(dimRiga/8, dimRiga/4);
+  const altezzaIns = random(dimColonna/6, dimColonna/2);
+  ellipse(0, 0, larghezzaIns, altezzaIns); //corpo insetto
 
-  const larghezzaTesta = random(larghezza/3);
-  const altezzaTesta = random(altezza/3);
+  const larghezzaTesta = random(larghezzaIns/6, larghezzaIns/3);
+  const altezzaTesta = random(altezzaIns/6, altezzaIns/3);
 
   ellipse(0, altezza/2, larghezzaTesta, altezzaTesta); //testa
   
-  //braccia
+  //zampe
   angleMode(DEGREES); //gradi al posto che radianti
 
   const rotazione = random(360);
-  const braccioW = random(xFine/16, xFine/14);
-  const braccioH = random(yFine/4, yFine/2-2); 
+  const braccioW = random(larghezzaIns/16, larghezzaIns/14);
+  const braccioH = random(altezzaIns/4, altezzaIns/2); 
 
   push();
   rotate(rotazione);
-  line(0, 0, braccioW, braccioH);
+  rectMode(CENTER);
+  rect(0, 0, braccioW, braccioH);
   pop();
 
 
