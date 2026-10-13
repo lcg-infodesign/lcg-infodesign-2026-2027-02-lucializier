@@ -1,6 +1,6 @@
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  background(255,255,176); //giallo
+  background(86, 115, 86); //verde
   //disegno glifi
   let numeroGlifi = 100;
 
@@ -25,40 +25,57 @@ function setup() {
   }
 }
 
-function mioGlifo(x, y) {
-  
-  push()
-
+function mioGlifo(x, y, size) {
+  push();
   translate(x, y);
+  fill(0);
   
-  let r = random(255); //chiedere al prof come fare colori di una palette
-  let g = random(255);
-  let b = random(255); 
-  fill(r, g, b);
-
-  const larghezzaIns = random(dimRiga/8, dimRiga/4);
-  const altezzaIns = random(dimColonna/6, dimColonna/2);
-  ellipse(0, 0, larghezzaIns, altezzaIns); //corpo insetto
-
-  const larghezzaTesta = random(larghezzaIns/6, larghezzaIns/3);
-  const altezzaTesta = random(altezzaIns/6, altezzaIns/3);
-
-  ellipse(0, altezza/2, larghezzaTesta, altezzaTesta); //testa
+  // corpo
+  const altezzaIns = random(size * 0.4, size * 0.8);
+  const larghezzaIns = random(size * 0.1, altezzaIns * 0.7); 
+  
+  // testa
+  const larghezzaTesta = random(larghezzaIns * 0.4, larghezzaIns * 0.8);
+  const altezzaTesta = random(larghezzaTesta * 0.6, larghezzaTesta * 1.2);
   
   //zampe
-  angleMode(DEGREES); //gradi al posto che radianti
+  let numZampe = random([4, 6]); 
+  let spessoreZampa = random(larghezzaIns * 0.05, larghezzaIns * 0.1); 
+  let lunghezzaZampa = random(larghezzaIns, larghezzaIns * 1.4);
+  stroke(0);
+  strokeWeight(spessoreZampa);
+  strokeCap(ROUND); 
+  angleMode(DEGREES);
 
-  const rotazione = random(360);
-  const braccioW = random(larghezzaIns/16, larghezzaIns/14);
-  const braccioH = random(altezzaIns/4, altezzaIns/2); 
+  //2 zampe
+  if (numZampe >= 2) {
+    // Destra
+    push(); rotate(-45); line(0, 0, lunghezzaZampa, 0); pop();
+    // Sinistra
+    push(); rotate(-135); line(0, 0, lunghezzaZampa, 0); pop();
+  }
+  
+  // 4 zampe
+  if (numZampe >= 4) {
+    // Destra
+    push(); rotate(45); line(0, 0, lunghezzaZampa, 0); pop();
+    // Sinistra
+    push(); rotate(135); line(0, 0, lunghezzaZampa, 0); pop();
+  }
+  
+  // 6 zampe
+  if (numZampe === 6) {
+    // Destra
+    push(); rotate(0); line(0, 0, lunghezzaZampa, 0); pop();
+    // Sinistra
+    push(); rotate(180); line(0, 0, lunghezzaZampa, 0); pop();
+  }
+  //corpo
+  noStroke(); 
+  ellipse(0, 0, larghezzaIns, altezzaIns); 
 
-  push();
-  rotate(rotazione);
-  rectMode(CENTER);
-  rect(0, 0, braccioW, braccioH);
-  pop();
-
-
+  //Testa
+  ellipse(0, -altezzaIns/2 - altezzaTesta/4, larghezzaTesta, altezzaTesta); 
 
   pop();
 }
