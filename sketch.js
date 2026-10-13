@@ -32,10 +32,10 @@ function mioGlifo(x, y, size) {
 
   //colori
   let palette = [
-    color(109, 74, 90),   // Viola
-    color(198, 164, 118), // Sabbia 
-    color(208, 168, 72),  // Senape 
-    color(180, 106, 82),  // Terracotta
+    color(75, 50, 62),   // Viola
+    color(140, 115, 80), // Sabbia 
+    color(145, 110, 40),  // Senape 
+    color(130, 65, 45),  // Terracotta
     color(64, 42, 34)     // Marrone 
   ];
   let colore = random(palette);
