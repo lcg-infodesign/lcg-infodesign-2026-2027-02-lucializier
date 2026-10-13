@@ -25,49 +25,39 @@ function setup() {
   }
 }
 
-function mioGlifo(x, y, size) {
+function mioGlifo(x, y, larghezza, altezza) {
   
   push()
+
   translate(x, y);
   
-  let r = random(255);
+  let r = random(255); //chiedere al prof come fare colori di una palette
   let g = random(255);
   let b = random(255); 
   fill(r, g, b);
 
-  strokeWeight(3);
+  ellipse(0, 0, larghezza, altezza); //corpo insetto
 
-  circle(0, 0, size); //orologio
+  const larghezzaTesta = random(larghezza/3);
+  const altezzaTesta = random(altezza/3);
 
-  fill (0);
-  strokeWeight(1);
-  circle(0, 0, size/8);
+  ellipse(0, altezza/2, larghezzaTesta, altezzaTesta); //testa
+  
+  //braccia
+  angleMode(DEGREES); //gradi al posto che radianti
 
-    //lancette
-    angleMode(DEGREES); //gradi al posto che radianti
+  const rotazione = random(360);
+  const braccioW = random(xFine/16, xFine/14);
+  const braccioH = random(yFine/4, yFine/2-2); 
 
-    //lancetta lunga
-    const rotazione1 = random(360);
-    const lancetta1W = random(size/15, size/13);
-    const lancetta1H = random(size/4, size/2); 
+  push();
+  rotate(rotazione);
+  line(0, 0, braccioW, braccioH);
+  pop();
 
-    //lancetta corta
-    const rotazione2 = random(360);
-    const lancetta2W = random(size/13, size/11);
-    const lancetta2H = random(size/12, size/4); 
 
-    //lancetta lunga
-    push();
-    rotate(rotazione1);
-    rect(0, 0, lancetta1W, lancetta1H);
-    pop();
 
-    //lancetta corta
-    push();
-    rotate(rotazione2);
-    rect(0, 0, lancetta2W, lancetta2H);
-    pop();
-  pop()
+  pop();
 }
 
 function draw() {
