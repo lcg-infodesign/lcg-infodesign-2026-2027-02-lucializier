@@ -1,18 +1,66 @@
-function preload() {
-  // put preload code here
-}
-
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  console.log('p5.js version:', p5.VERSION);
-  // put setup code here
-  const message =
-    "This is a template repository\nfor the course Laboratorio di Computergrafica\nCommunication Design, Politecnico di Milano";
-  textAlign(CENTER, CENTER);
-  textSize(16);
-  text(message, width / 2, height / 2);
+  background(255,255,176); //giallo
+  //disegno glifi
+  let numeroGlifi = 100;
+
+  //griglia
+  let numeroColonne = sqrt(numeroGlifi);
+  let numeroRighe = sqrt(numeroGlifi);
+  let dimColonna = windowWidth/numeroColonne;
+  let dimRiga = windowHeight/numeroRighe;
+
+  let xCorrente = 0;
+  let yCorrente = 0;
+
+  for(let i = 0; i<numeroGlifi; i++){
+    mioGlifo(xCorrente +dimColonna/2, yCorrente + dimRiga/2, random(dimRiga/3, dimRiga-2));
+    xCorrente = xCorrente + dimColonna;
+
+    if(xCorrente>=windowWidth){
+      xCorrente = 0;
+      yCorrente = yCorrente+dimRiga;
+    }
+
+  }
+}
+
+function mioGlifo(x, y, size) {
+  
+  push()
+  translate(x, y);
+  
+  let r = random(255);
+  let g = random(255);
+  let b = random(255); 
+  fill(r, g, b);
+
+  strokeWeight(3);
+
+  circle(0, 0, size); //orologio
+
+    
+    //lancette
+    angleMode(DEGREES); //gradi al posto che radianti
+    const miaRotazione = random(360);
+    const mialancettaw = random(size/12, size/10);
+    const mialancettah = random(size/10, size/2);
+    
+    fill (0);
+    strokeWeight(1);
+
+    push()
+    rotate(miaRotazione);
+    rect(0, 0, mialancettaw, mialancettah);
+    pop()
+
+    push()//perché non funziona la seconda lancetta? Risolvere domani
+    rotate(miaRotazione);
+    rect(0, 0, mialancettaw, mialancettah);
+    pop()
+
+  pop()
 }
 
 function draw() {
-  // put drawing code here
 }
