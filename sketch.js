@@ -28,7 +28,9 @@ function setup() {
 function mioGlifo(x, y, size) {
   push();
   translate(x, y);
-  fill(0);
+
+  angleMode(DEGREES);
+  rotate(random(360));
 
   //colori
   let palette = [
@@ -45,27 +47,31 @@ function mioGlifo(x, y, size) {
   const larghezzaIns = random(size * 0.1, altezzaIns * 0.7); 
   
   // testa
-  const larghezzaTesta = random(larghezzaIns * 0.4, larghezzaIns * 0.8);
-  const altezzaTesta = random(larghezzaTesta * 0.6, larghezzaTesta * 1.2);
+  const larghezzaTesta = random(larghezzaIns * 0.6, larghezzaIns * 0.8);
+  const altezzaTesta = random(larghezzaTesta * 0.8, larghezzaTesta * 1.2);
   
   //zampe
   let numZampe = random([4, 6]); 
-  let spessoreZampa = random(larghezzaIns * 0.05, larghezzaIns * 0.1); 
-  let lunghezzaZampa = random(larghezzaIns, larghezzaIns * 1.4);
-  stroke(colore);
-  strokeWeight(spessoreZampa);
-  strokeCap(ROUND); 
-  angleMode(DEGREES);
+  let spessoreZampa = random(larghezzaIns * 0.1, larghezzaIns * 0.15); 
+  let lunghezzaZampa = random(larghezzaIns, larghezzaIns * 1.3);
+  
+  //intero insetto
+  fill(colore);
+  stroke(30, 15, 10); //marrone scuro
+  strokeWeight(1);
+
+  //disengo zampe
+  let raggioAngoli = spessoreZampa / 2;
 
   //2 zampe
   if (numZampe >= 2) {
     push();    // Destra
     rotate(-45); 
-    line(0, 0, lunghezzaZampa, 0); 
+    rect(0, -spessoreZampa/2, lunghezzaZampa, spessoreZampa, raggioAngoli);
     pop();
     push();    // Sinistra
     rotate(-135); 
-    line(0, 0, lunghezzaZampa, 0); 
+    rect(0, -spessoreZampa/2, lunghezzaZampa, spessoreZampa, raggioAngoli);
     pop();
   }
   
@@ -73,11 +79,11 @@ function mioGlifo(x, y, size) {
   if (numZampe >= 4) {
     push(); //Destra
     rotate(45); 
-    line(0, 0, lunghezzaZampa, 0); 
+    rect(0, -spessoreZampa/2, lunghezzaZampa, spessoreZampa, raggioAngoli);
     pop();
     push();   // Sinistra
     rotate(135); 
-    line(0, 0, lunghezzaZampa, 0); 
+    rect(0, -spessoreZampa/2, lunghezzaZampa, spessoreZampa, raggioAngoli);
     pop();
   }
   
@@ -85,19 +91,17 @@ function mioGlifo(x, y, size) {
   if (numZampe === 6) {
     push(); // Destra
     rotate(0); 
-    line(0, 0, lunghezzaZampa, 0); 
+    rect(0, -spessoreZampa/2, lunghezzaZampa, spessoreZampa, raggioAngoli);
     pop();
     push(); //Sinistra
     rotate(180); 
-    line(0, 0, lunghezzaZampa, 0); 
+    rect(0, -spessoreZampa/2, lunghezzaZampa, spessoreZampa, raggioAngoli);
     pop();
   }
-  //corpo
-  fill(colore);
-  noStroke(); 
+  // disegno corpo
   ellipse(0, 0, larghezzaIns, altezzaIns); 
 
-  //Testa
+  //disegno Testa
   ellipse(0, -altezzaIns/2 - altezzaTesta/4, larghezzaTesta, altezzaTesta); 
   pop();
 }
