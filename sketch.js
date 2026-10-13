@@ -42,23 +42,31 @@ function mioGlifo(x, y, size) {
     
     //lancette
     angleMode(DEGREES); //gradi al posto che radianti
-    const miaRotazione = random(360);
-    const mialancettaw = random(size/12, size/10);
-    const mialancettah = random(size/10, size/2);
     
     fill (0);
     strokeWeight(1);
 
-    push()
-    rotate(miaRotazione);
-    rect(0, 0, mialancettaw, mialancettah);
-    pop()
+    //lancetta lunga
+    const rotazione1 = random(360);
+    const lancetta1W = random(size/15, size/13);
+    const lancetta1H = random(size/4, size/2); 
 
-    push()//perché non funziona la seconda lancetta? Risolvere domani
-    rotate(miaRotazione);
-    rect(0, 0, mialancettaw, mialancettah);
-    pop()
+    //lancetta corta
+    const rotazione2 = random(360);
+    const lancetta2W = random(size/13, size/11);
+    const lancetta2H = random(size/12, size/4); 
 
+    //lancetta lunga
+    push();
+    rotate(rotazione1);
+    rect(0, 0, lancetta1W, lancetta1H);
+    pop();
+
+    //lancetta corta
+    push();
+    rotate(rotazione2);
+    rect(0, 0, lancetta2W, lancetta2H);
+    pop();
   pop()
 }
 
