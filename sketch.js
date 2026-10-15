@@ -51,7 +51,7 @@ function mioGlifo(x, y, size) {
   const altezzaTesta = random(larghezzaTesta * 0.8, larghezzaTesta * 1.2);
   
   //zampe
-  let numZampe = random([4, 6]); 
+  let numZampe = random([4, 6, 8]); 
   let spessoreZampa = random(larghezzaIns * 0.1, larghezzaIns * 0.15); 
   let lunghezzaZampa = random(larghezzaIns, larghezzaIns * 1.3);
   
@@ -62,26 +62,25 @@ function mioGlifo(x, y, size) {
 
   //disengo zampe
   let raggioAngoli = spessoreZampa / 2;
-
-  //2 zampe
-  if (numZampe >= 2) {
-    push();    // Destra
-    rotate(-45); 
-    rect(0, -spessoreZampa/2, lunghezzaZampa, spessoreZampa, raggioAngoli);
-    pop();
-    push();    // Sinistra
-    rotate(-135); 
-    rect(0, -spessoreZampa/2, lunghezzaZampa, spessoreZampa, raggioAngoli);
-    pop();
-  }
   
   // 4 zampe
   if (numZampe >= 4) {
-    push(); //Destra
+    push();    // Destra alta
+    rotate(-45); 
+    rect(0, -spessoreZampa/2, lunghezzaZampa, spessoreZampa, raggioAngoli);
+    pop();
+
+    push(); //Destra bassa
     rotate(45); 
     rect(0, -spessoreZampa/2, lunghezzaZampa, spessoreZampa, raggioAngoli);
     pop();
-    push();   // Sinistra
+
+    push();    // Sinistra alta
+    rotate(-135); 
+    rect(0, -spessoreZampa/2, lunghezzaZampa, spessoreZampa, raggioAngoli);
+    pop();
+
+    push();   // Sinistra bassa
     rotate(135); 
     rect(0, -spessoreZampa/2, lunghezzaZampa, spessoreZampa, raggioAngoli);
     pop();
@@ -98,6 +97,10 @@ function mioGlifo(x, y, size) {
     rect(0, -spessoreZampa/2, lunghezzaZampa, spessoreZampa, raggioAngoli);
     pop();
   }
+
+  // 8 zampe 
+
+  
   // disegno corpo
   ellipse(0, 0, larghezzaIns, altezzaIns); 
 
