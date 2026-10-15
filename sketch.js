@@ -99,6 +99,27 @@ function mioGlifo(x, y, size) {
   }
 
   // 8 zampe 
+  if (numZampe === 8) {
+    push(); // Destra centro-alta
+    rotate(-15); 
+    rect(0, -spessoreZampa/2, lunghezzaZampa, spessoreZampa, raggioAngoli);
+    pop();
+    
+    push(); // Destra centro-bassa
+    rotate(15); 
+    rect(0, -spessoreZampa/2, lunghezzaZampa, spessoreZampa, raggioAngoli);
+    pop();
+    
+    push(); // Sinistra centro-alta
+    rotate(-165); 
+    rect(0, -spessoreZampa/2, lunghezzaZampa, spessoreZampa, raggioAngoli);
+    pop();
+    
+    push(); // Sinistra centro-bassa
+    rotate(165); 
+    rect(0, -spessoreZampa/2, lunghezzaZampa, spessoreZampa, raggioAngoli);
+    pop();
+  }
 
   
   // disegno corpo
